@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import openSocket from 'socket.io-client'
-
+import KeyCard from './KeyCard'
 
 const endpoint = "http://127.0.0.1:4001"
 const socket = openSocket(endpoint)
@@ -81,13 +81,43 @@ const App = () => {
   }, 1000 / 60);
 
 
+const keycards= [
+    {
+        pattern: [
+          'red', 'blue', 'red', 'red', 'blue',
+          'grey', 'blue', 'red', 'grey', 'grey',
+          'red', 'grey', 'blue', 'blue', 'blue',
+          'grey', 'blue', 'grey', 'blue', 'red',
+          'blue', 'red', 'red', 'black', 'grey',
+        ],
+        extraColor: 'blue'
+    },
+    {
+        pattern:
+        [
+          'grey', 'blue', 'red', 'red', 'grey',
+          'blue', 'blue', 'blue', 'black', 'blue',
+          'grey', 'red', 'grey', 'grey', 'red',
+          'grey', 'red', 'red', 'red', 'grey',
+          'blue', 'blue', 'blue', 'blue', 'red',
+        ],
+        extraColor: 'blue'
+    }
+]
+  const keyNumber = Math.floor(Math.random() * keycards.length)
+  console.log(keyNumber)
+const currentKey= keycards[keyNumber]
 
 
 
 
 
-
-return <button onClick={()=> setPlayerCount(playerCount + 1)}>Add Player</button>
+return(
+<>
+<button onClick={()=> setPlayerCount(playerCount + 1)}>Add Player</button>
+<KeyCard pattern={currentKey.pattern} extraCard={currentKey.color}/>
+</>
+)
 
 }
 
