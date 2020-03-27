@@ -115,7 +115,7 @@ const currentKey= keycards[keyNumber]
 return(
 <>
 <button onClick={()=> setPlayerCount(playerCount + 1)}>Add Player</button>
-<KeyCard pattern={currentKey.pattern} extraCard={currentKey.color}/>
+<KeyCard pattern={currentKey.pattern} extraCard={currentKey.extraColor}/>
 </>
 )
 
