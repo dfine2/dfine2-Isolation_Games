@@ -28,9 +28,6 @@ const library = require('./library')
         return shuffledKey
     }
 
-const shuffleDeck = (deck) => {
-
-}
 const generateCards= (deck,key, setDeck) => {
 
     const words = []
@@ -42,11 +39,10 @@ const generateCards= (deck,key, setDeck) => {
     }
     const cards = []
     for(let i = 0; i < 25; i++){
-        cards.push({word: words[i], color: key[i]})
+        cards.push({word: words[i], color: key[i], revealed: false})
     }
 
 return cards
 }
-
 
 module.exports =  {generateCards, generateKey}

@@ -10,13 +10,15 @@ const ServerState =  createContext()
 const ServerDispatch = createContext()
 
 const ServerProvider = ({children}) => {
-    const [playerCount, setPlayerCount] = useState(0)
+    const [user, setUser] = useState()
+    const [players, setPlayers] = useState()
     const [key, setKey] = useState()
     const [deck, setDeck] = useState([...library])
     const [extraColor, setExtraColor] = useState()
     const [cards, setCards] = useState()
 
     useEffect(()=>{
+        identifyUser()
         getKey()
     }, [])
 
@@ -35,22 +37,33 @@ const ServerProvider = ({children}) => {
 
 
 
-    const getKey = async () => {
+    const getKey = () => {
         socket.on('newKey',  (data) => setKey(data))
         socket.emit('getKey')
     }
 
-    const getCards = async () => {
+    const getCards = () => {
         socket.on('newCards', (data) => setCards(data))
         socket.emit('getCards', deck, key, setDeck)
 
     }
 
+    const identifyUser = () => {
+        socket.on('identify', data => setUser(data))
+
+        socket.emit('identifyUser')
+    }
+
+    const flipCard = (word) => {
+        socket.on('updateCards', data => setCards(data))
+        console.log(cards)
+        socket.emit('flipCard', word)
+    }
 
 
     return (
-        <ServerState.Provider value={{ playerCount, key, extraColor, cards }}>
-            <ServerDispatch.Provider value={{ setPlayerCount, getKey, getCards}}>
+        <ServerState.Provider value={{ key, extraColor, cards, user }}>
+            <ServerDispatch.Provider value={{  getKey, getCards, identifyUser, setUser, flipCard}}>
                 {children}
             </ServerDispatch.Provider>
         </ServerState.Provider>

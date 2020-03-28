@@ -4,7 +4,9 @@ const { generateCards, generateKey } = require('./src/utils')
 
 
 let players = {}
-
+const cache = {
+    cards: []
+}
 io.on("connection", client => {
     console.log(client.id)
      console.log("New client connected")
@@ -36,11 +38,26 @@ io.on("connection", client => {
     client.on('getCards', (deck, key, setDeck) => {
         if (key) {
             const cards = generateCards(deck ,key, setDeck)
+            cache.cards = cards
+            console.log(cache.cards)
             io.sockets.emit('newCards', cards)}
     })
 
-    client.on('startNewRound', () => {
-            io.sockets.emit('newRound')
+    client.on('identifyUser', () => {
+        client.emit('identify', players[client.id])
+    })
+
+    client.on('nameUser', (name)=>{
+        players[client.id].name =  name
+        client.emit('updateUser')
+    })
+
+    client.on('flipCard', (word) => {
+        const cards = cache.cards
+        const card = cache.cards.filter(x=> x.word === word)
+        console.log(card)
+        card[0].revealed = true
+        io.sockets.emit('updateCards', cards)
     })
 
 });

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const Grid = styled.div`
@@ -33,6 +33,8 @@ height: 300px;
 border: ${({extraCard}) => `8px inset ${extraCard}`};
 `
 const KeyCard = ({pattern, extraCard}) => {
+    const [hidden, setHidden] = useState(true)
+
     const squares = []
     for(let i=0; i<25; i++){
         squares.push(<Square color={pattern[i]} key={i}/>)
@@ -40,8 +42,8 @@ const KeyCard = ({pattern, extraCard}) => {
     return (
     <OuterContainer extraCard={extraCard}>
         <InnerContainer>
-            <Grid>
-                {squares}
+            <Grid onDoubleClick={()=> setHidden(false)}>
+                {!hidden && squares}
             </Grid>
         </InnerContainer>
     </OuterContainer>
