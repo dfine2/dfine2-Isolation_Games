@@ -1,7 +1,5 @@
-import React from 'react'
-import deck from './deck'
 
-
+const library = require('./library')
 
     const generateKey = () => {
         const key = []
@@ -27,25 +25,28 @@ import deck from './deck'
             shuffledKey.push(key[random])
             key.splice(random, 1)
         }
-        console.log(shuffledKey)
         return shuffledKey
     }
 
-const generateCards= (key) => {
+const shuffleDeck = (deck) => {
+
+}
+const generateCards= (deck,key, setDeck) => {
+
     const words = []
-    const library = deck
     for (let i = 0; i < 25; i++) {
-        const random = Math.floor(Math.random() * library.length)
-        words.push(library[random])
-        library.splice(random, 1)
+        const random = Math.floor(Math.random() * deck.length)
+        words.push(deck[random])
+        deck.splice(random, 1)
+        setDeck(deck)
     }
     const cards = []
     for(let i = 0; i < 25; i++){
         cards.push({word: words[i], color: key[i]})
     }
 
-   return cards
+return cards
 }
 
 
-export {generateCards, generateKey}
+module.exports =  {generateCards, generateKey}

@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'
+import App from './components/App'
+import ServerProvider from './api'
+
+
+
+
 
 ReactDOM.render(
-    <App />,
+  <ServerProvider>
+    <App />
+  </ServerProvider>,
   document.getElementById('root')
 );
 
