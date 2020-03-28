@@ -1,17 +1,7 @@
 import React from 'react'
 import deck from './deck'
 
-    const generateWords = () => {
-        const words = []
-        const cards = deck
-        for(let i = 0; i < 25; i++){
-            const random = Math.floor(Math.random() * deck.length)
-            words.push(cards[random])
-            cards.splice(random, 1)
-        }
 
-        return words
-    }
 
     const generateKey = () => {
         const key = []
@@ -41,5 +31,21 @@ import deck from './deck'
         return shuffledKey
     }
 
+const generateCards= (key) => {
+    const words = []
+    const library = deck
+    for (let i = 0; i < 25; i++) {
+        const random = Math.floor(Math.random() * library.length)
+        words.push(library[random])
+        library.splice(random, 1)
+    }
+    const cards = []
+    for(let i = 0; i < 25; i++){
+        cards.push({word: words[i], color: key[i]})
+    }
 
-export {generateWords, generateKey}
+   return cards
+}
+
+
+export {generateCards, generateKey}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import openSocket from 'socket.io-client'
 import KeyCard from './KeyCard'
-import {generateWords, generateKey }from './context'
+import {generateCards, generateKey }from './context'
 
 const endpoint = "http://127.0.0.1:4001"
 const socket = openSocket(endpoint)
@@ -85,13 +85,18 @@ const blues = key.filter(x => x === 'blue')
 
 const extraColor = blues.length === 9 ? 'blue' : 'red'
 
-const words = generateWords()
-console.log(words)
-generateKey()
+const cards = generateCards(key)
+const words = []
+for(let i = 0; i < 25; i++){
+  words.push(<p style={{color: cards[i].color}}>  {`\t${cards[i].word}  `} </p>)
+}
 return(
 <>
 <button onClick={()=> setPlayerCount(playerCount + 1)}>Add Player</button>
 <KeyCard pattern={key} extraCard={extraColor}/>
+<div style={{display: 'flex'}}>
+  {words}
+</div>
 </>
 )
 
