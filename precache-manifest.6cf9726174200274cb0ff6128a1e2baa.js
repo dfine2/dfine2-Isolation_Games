@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "669f0062b7c7cb1b7c0eb3f14520ff7e",
+    "revision": "64c44f1628961c09a455f960ad8be84f",
     "url": "/dfine2-Isolation_Games/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dfine2-Isolation_Games/static/js/2.b0b3d75c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "abfdf43195365b26a575",
-    "url": "/dfine2-Isolation_Games/static/js/main.385ce137.chunk.js"
+    "revision": "77a5c5c0d29662ae0251",
+    "url": "/dfine2-Isolation_Games/static/js/main.a7b011c1.chunk.js"
   },
   {
     "revision": "d342ed1d869a0e542213",
