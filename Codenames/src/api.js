@@ -35,10 +35,12 @@ const ServerProvider = ({children}) => {
         }
     }, [key])
 
-
+    socket.on('gameState', data => console.log(data.cards[0]))
 
     const getKey = () => {
-        socket.on('newKey',  (data) => setKey(data))
+        socket.on('newKey',  (data) => {
+            console.log(data)
+            setKey(data)})
         socket.emit('getKey')
     }
 

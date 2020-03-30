@@ -3,32 +3,33 @@ const io = require('socket.io')({origins: '*:*' });
 const { generateCards, generateKey } = require('./src/utils')
 
 
-let players = {}
+let gameState = {
+    cards: ['abc','efg'],
+    key: []
+}
 const cache = {
     cards: []
 }
-io.on("connection", client => {
-    console.log(client.id)
-     console.log("New client connected")
-    const newPlayer = {
-        active: false,
-        name: '',
-        team: '',
-        cluegiver: false,
-        chooser: false
-    }
-    players[client.id] = newPlayer
+let interval;
 
+io.on("connection", client => {
+    console.log("New client connected");
+    if (interval) {
+        clearInterval(interval);
+    }
+
+
+    interval = setInterval(() =>{
+        let key = generateKey()
+        io.sockets.emit('newKey', key)}, 1000)
+    client.on("disconnect", () => {
+        console.log("Client disconnected");
+    })
 
     client.on("disconnect", ()=> {
         console.log("Client disconnected")
-        delete players[client.id]
     })
 
-    client.on('newPlayer', () => {
-        console.log('new player')
-
-    })
 
     client.on('getKey', () => {
         const key = generateKey()
@@ -41,15 +42,6 @@ io.on("connection", client => {
             cache.cards = cards
             console.log(cache.cards)
             io.sockets.emit('newCards', cards)}
-    })
-
-    client.on('identifyUser', () => {
-        client.emit('identify', players[client.id])
-    })
-
-    client.on('nameUser', (name)=>{
-        players[client.id].name =  name
-        client.emit('updateUser')
     })
 
     client.on('flipCard', (word) => {
