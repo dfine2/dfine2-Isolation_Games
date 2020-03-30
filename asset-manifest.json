@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/dfine2-Isolation_Games/static/js/main.a7b011c1.chunk.js",
-    "main.js.map": "/dfine2-Isolation_Games/static/js/main.a7b011c1.chunk.js.map",
+    "main.js": "/dfine2-Isolation_Games/static/js/main.a1cee7bf.chunk.js",
+    "main.js.map": "/dfine2-Isolation_Games/static/js/main.a1cee7bf.chunk.js.map",
     "runtime-main.js": "/dfine2-Isolation_Games/static/js/runtime-main.6df5c877.js",
     "runtime-main.js.map": "/dfine2-Isolation_Games/static/js/runtime-main.6df5c877.js.map",
-    "static/js/2.b0b3d75c.chunk.js": "/dfine2-Isolation_Games/static/js/2.b0b3d75c.chunk.js",
-    "static/js/2.b0b3d75c.chunk.js.map": "/dfine2-Isolation_Games/static/js/2.b0b3d75c.chunk.js.map",
+    "static/js/2.46c68082.chunk.js": "/dfine2-Isolation_Games/static/js/2.46c68082.chunk.js",
+    "static/js/2.46c68082.chunk.js.map": "/dfine2-Isolation_Games/static/js/2.46c68082.chunk.js.map",
     "index.html": "/dfine2-Isolation_Games/index.html",
-    "precache-manifest.6cf9726174200274cb0ff6128a1e2baa.js": "/dfine2-Isolation_Games/precache-manifest.6cf9726174200274cb0ff6128a1e2baa.js",
+    "precache-manifest.843037284219fbc9e36b00d623303b29.js": "/dfine2-Isolation_Games/precache-manifest.843037284219fbc9e36b00d623303b29.js",
     "service-worker.js": "/dfine2-Isolation_Games/service-worker.js",
-    "static/js/2.b0b3d75c.chunk.js.LICENSE.txt": "/dfine2-Isolation_Games/static/js/2.b0b3d75c.chunk.js.LICENSE.txt"
+    "static/js/2.46c68082.chunk.js.LICENSE.txt": "/dfine2-Isolation_Games/static/js/2.46c68082.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6df5c877.js",
-    "static/js/2.b0b3d75c.chunk.js",
-    "static/js/main.a7b011c1.chunk.js"
+    "static/js/2.46c68082.chunk.js",
+    "static/js/main.a1cee7bf.chunk.js"
   ]
 }
