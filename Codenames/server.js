@@ -1,55 +1,52 @@
 
 const io = require('socket.io')({origins: '*:*' });
-const { generateCards, generateKey } = require('./src/utils')
-
+const  generateGame = require('./src/generateGame')
+const library = require('./src/library')
 
 let gameState = {
-    cards: ['abc','efg'],
-    key: []
+    key: [],
+    deck: [...library],
+    cards: [],
+    blueCards: 0,
+    redCards: 0,
+    turn: '',
 }
-const cache = {
-    cards: []
-}
+
+gameState = generateGame(gameState)
+
 let interval;
 
 io.on("connection", client => {
-    console.log("New client connected");
+    console.log("New client connected")
+
+
+    console.log({...gameState})
     if (interval) {
         clearInterval(interval);
     }
 
 
     interval = setInterval(() =>{
-        let key = generateKey()
-        io.sockets.emit('newKey', key)}, 1000)
+        io.sockets.emit('gameState', gameState)}, 1000)
+
     client.on("disconnect", () => {
         console.log("Client disconnected");
     })
 
-    client.on("disconnect", ()=> {
-        console.log("Client disconnected")
+    client.on('flipCard', (word)=>{
+        const card  = gameState.cards.filter(x => x.word === word)[0]
+        card.revealed = true
+        if(card.color === 'blue') gameState.blueCards -= 1
+        if(card.color === 'red') gameState.redCards -= 1
     })
 
-
-    client.on('getKey', () => {
-        const key = generateKey()
-        io.sockets.emit('newKey', key)
+    client.on('startNewGame', ()=>{
+        gameState = generateGame(gameState)
+        // io.sockets.emit('newGame', gameState)
     })
 
-    client.on('getCards', (deck, key, setDeck) => {
-        if (key) {
-            const cards = generateCards(deck ,key, setDeck)
-            cache.cards = cards
-            console.log(cache.cards)
-            io.sockets.emit('newCards', cards)}
-    })
-
-    client.on('flipCard', (word) => {
-        const cards = cache.cards
-        const card = cache.cards.filter(x=> x.word === word)
-        console.log(card)
-        card[0].revealed = true
-        io.sockets.emit('updateCards', cards)
+    client.on('endTurn', ()=>{
+        gameState.turn = gameState.turn === 'red' ? 'blue' : 'red'
     })
 
 });
