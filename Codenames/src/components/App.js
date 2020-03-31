@@ -1,10 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import KeyCard from './KeyCard'
+import TurnActions from './TurnActions'
 import Scores from './Scores'
 import RoleButtons from './RoleButtons'
-import {getKey}from '../gameState'
-import {generateCards} from '../generateGame'
 import Board from './Board'
 import  {useGameState, useGameDispatch} from '../gameState'
 
@@ -19,9 +17,6 @@ const TopBar = styled.div`
   margin: 40px 32px 8px 32px;
   `
 
-const RightActionBar = styled.div`
-  display: flex;
-`
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +27,7 @@ const Container = styled.div`
 
 const App = () => {
   const {localState} = useGameState()
-  const {startNewGame, endTurn} = useGameDispatch()
+
   const {cards, turn } = localState
 
 
@@ -43,11 +38,7 @@ return(
       <TopBar>
         <Scores />
         <div style={{color:turn}}>{turn}'s turn</div>
-        <RightActionBar>
-
-          <button onClick={() => endTurn()}>End Turn</button>
-          <button onClick={() => startNewGame()}>New Game</button>
-        </RightActionBar>
+        <TurnActions/>
       </TopBar>
         {cards && < Board cards={cards} />}
         <RoleButtons/>
