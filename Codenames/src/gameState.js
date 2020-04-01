@@ -20,7 +20,7 @@ const initialState = {
 
 const GameProvider = ({children}) => {
     const [localState, setLocalState] = useState(initialState)
-    const [view, setView] = useState('Player')
+    const [view, setView] = useState('agent')
 
     socket.on('gameState', gameState => setLocalState(gameState))
     socket.on('newGame', gameState => setLocalState(gameState))

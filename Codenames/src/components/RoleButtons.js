@@ -9,6 +9,7 @@ const Container = styled.div`
 `
 const RoleButton = styled.button`
     width: 100%;
+    color: ${({ isSelected }) => isSelected ? 'white' : 'black'};
     background-color: ${({isSelected}) => isSelected ? 'lightslategrey' : 'silver'};
     cursor: pointer;
     font-size: 24px;
