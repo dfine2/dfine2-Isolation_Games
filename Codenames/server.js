@@ -52,7 +52,7 @@ io.on("connection", client => {
 });
 
 
-const port = 3001;
+const port = 3000;
 
 io.listen(port)
 io.set('origins', '*:*');

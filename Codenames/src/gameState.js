@@ -2,7 +2,7 @@ import openSocket from 'socket.io-client'
 import React, {createContext, useState, useContext, useEffect} from 'react'
 
 
-const endpoint = "http://127.0.0.1:3001"
+const endpoint = "http://7ce63e47.ngrok.io"
 const socket = openSocket(endpoint)
 
 
