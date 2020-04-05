@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dfine2-Isolation_Games/precache-manifest.973dedcf7a054eaa7971914698c1f7f8.js"
+  "/dfine2-Isolation_Games/precache-manifest.55afcc8be20713a5308389ce94d2e740.js"
 );
 
 self.addEventListener('message', (event) => {
