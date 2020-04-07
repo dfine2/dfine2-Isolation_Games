@@ -16,7 +16,7 @@ const RoleButton = styled.button`
     height: 90px;
     border: ${({ isSelected }) => isSelected ? '4px inset lightslategrey' : '4px groove silver'};
     outline: 0;
-    font-family: 'Snell Roundhand'
+    font-family: 'Chalkduster'
 `
 const RoleButtons = () => {
     const {view} = useGameState()
