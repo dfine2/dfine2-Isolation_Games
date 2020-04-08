@@ -27,7 +27,7 @@ io.on("connection", client => {
 
 
     interval = setInterval(() =>{
-        io.sockets.emit('gameState', gameState)}, 1000)
+        io.sockets.emit('gameState', gameState)}, 500)
 
     client.on("disconnect", () => {
         console.log("Client disconnected");
