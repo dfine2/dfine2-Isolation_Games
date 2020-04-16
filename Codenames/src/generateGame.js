@@ -4,7 +4,7 @@ const library = require('./library')
     const generateGame = (gameState) => {
         let {key, deck, cards, blueCards, redCards, turn} = gameState
           console.log(library.length)
-        if(!deck.length){
+        if(deck.length < 25){
 
             deck = [...library]
         }
