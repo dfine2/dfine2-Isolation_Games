@@ -4,7 +4,7 @@ import React, {createContext, useState, useContext, useEffect} from 'react'
 
 //yarn ngrok http -host-header=rewrite 3000
 
-const endpoint = "https://a2c4322c.ngrok.io"
+const endpoint = "https://22b2a049.ngrok.io"
 const socket = openSocket(endpoint)
 
 
