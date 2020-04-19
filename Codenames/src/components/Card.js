@@ -16,12 +16,11 @@ const Card = ({card}) => {
     const {view} = useGameState()
     const {flipCard} = useGameDispatch()
 
-
     return(
         <StyledCard
         card={card}
         view={view}
-            onClick={()=> view === 'arbiter' && flipCard(card.word)}
+            onClick={()=> (view === 'arbiter' && card.revealed === false) &&  flipCard(card.word)}
         >
         {card.word}
         </StyledCard>
