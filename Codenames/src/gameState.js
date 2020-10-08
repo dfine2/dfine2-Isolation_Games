@@ -1,14 +1,14 @@
 import openSocket from 'socket.io-client'
-import React, {createContext, useState, useContext, useEffect} from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react'
 
 
 //yarn ngrok http -host-header=rewrite 3000
 
-const endpoint = "https://94e124c15dba.ngrok.io"
+const endpoint = "http://ae5a8b50035f.ngrok.io"
 const socket = openSocket(endpoint)
 
 
-const GameState =  createContext()
+const GameState = createContext()
 const GameDispatch = createContext()
 
 const initialState = {
@@ -20,7 +20,7 @@ const initialState = {
     turn: ''
 }
 
-const GameProvider = ({children}) => {
+const GameProvider = ({ children }) => {
     const [localState, setLocalState] = useState(initialState)
     const [view, setView] = useState('agent')
 
@@ -41,7 +41,7 @@ const GameProvider = ({children}) => {
 
     return (
         <GameState.Provider value={{ localState, view }}>
-            <GameDispatch.Provider value={{ flipCard, setView, startNewGame, endTurn}}>
+            <GameDispatch.Provider value={{ flipCard, setView, startNewGame, endTurn }}>
                 {children}
             </GameDispatch.Provider>
         </GameState.Provider>
@@ -60,4 +60,4 @@ const useGameDispatch = () => {
 
 export default GameProvider
 
-export {useGameState, useGameDispatch}
+export { useGameState, useGameDispatch }
